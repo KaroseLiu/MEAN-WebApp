@@ -1,0 +1,94 @@
+[
+  {
+    "id": "PayrollApp",
+    "name": "PayrollApp",
+    "type": "All",
+    "status": "Running",
+    "description": "Use the API Use the API Reference documentation when you need more information about a specific feature. bout a specific feature. Check out Developer Guide for AngularJS concepts. If you are new to AngularJS we recommend the Tutorial.",
+    "deploymentState": "Deployed",
+    "appNode": "HR-AppNode01",
+    "libraries": 2
+
+  },
+  {
+    "id": "BenefitsMgmtApp",
+    "name": "BenefitsMgmtApp",
+    "type": "Small",
+    "status": "Stopped",
+    "description": "descriptiion blah blah blah.",
+    "deploymentState": "DeployFailed",
+    "appNode": "HR-AppNode02",
+    "libraries": 2,
+    "appspace":"===="
+
+
+  },
+  {
+    "id": "HiringApp",
+    "type": "Large",
+    "name": "HiringApp",
+    "status": "Impaired",
+    "description": "descriptiion blah blah blah",
+    "deploymentState": "UndeployFailed",
+    "appNode": "HR-AppNode03",
+    "libraries": 2
+
+  },
+  {
+    "id": "AccountsReceivableApp",
+    "type": "All",
+    "name": "AccountsReceivableApp",
+    "status": "FlowControlled",
+    "description": "Check out Developer Guide foUse the API Reference documentation when you need more information about a specific feature. Check out Developer Guide for AngularJS concepts. If you are new to AngularJS we recommend the Tutorial.Use the API Reference documentation when you need more information a",
+    "deploymentState": "OutOfSync",
+    "appNode": "HR-AppNode04",
+    "libraries": 2
+
+  },
+  {
+    "id": "AccountsPayableApp",
+    "type": "Small",
+    "name": "AccountsPayableApp",
+    "status": "Paused",
+    "description": "descriptiion blah blah blah",
+    "deploymentState": "OutOfSync",
+    "appNode": "HR-AppNode05",
+    "libraries": 2
+
+  },
+  {
+    "id": "DistributionMgmtApp",
+    "type": "All",
+    "name": "DistributionMgmtApp",
+    "status": "StartFailed",
+    "description": "bout a specific feature. Check out Developer Guide for AngularJS concepts. If you are new to AngularJS we recommend the Tutorial.r AngularJS concepts. If you are new to AngularJS we recommend the Tutorial. Reference documentation when you need more information a",
+    "deploymentState": "OutOfSync",
+    "appNode": "HR-AppNode06",
+    "libraries": 2,
+    "error":" Start Failed"
+
+  },
+  {
+    "id": "RetailMgmtApp",
+    "type": "Large",
+    "name": "RetailMgmtApp",
+    "status": "AppError",
+    "description": "some description........",
+    "deploymentState": "UndeployFailed",
+    "appNode": "HR-AppNode07",
+    "libraries": 2
+
+  },
+  {
+    "id": "LoyaltyMgmtApp",
+    "type": "Small",
+    "name": "LoyaltyMgmtApp",
+    "status": "DeployFailed",
+    "description": "some description........",
+    "deploymentState": "UndeployFailed",
+    "appNode": "HR-AppNode08",
+    "libraries": 2
+
+  }
+]
+

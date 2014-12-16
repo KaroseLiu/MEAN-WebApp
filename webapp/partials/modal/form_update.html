@@ -1,0 +1,32 @@
+<div ng-repeat="page in pagesData" >
+	<form class="karose-form-update karose-form">
+		<div class='bw-modal-content'>
+			<div ng-repeat="formInfo in page.formInfo" ng-switch="formInfo.propertyStyle">
+          <div class="karose-modal-form-row clearfix" ng-switch-when="input">
+            <label>{{formInfo.propertyName}}</label>
+            <div class="controls">
+              <div class="input-wrapper">
+                <input ng-model="formData[formInfo.property]" placeholder="{{formInfo.placeholder}}"
+                  id="{{formInfo.property}}" />
+              </div>
+            </div>
+          </div>
+          <div class="bw-modal-form-row" ng-switch-when="select">
+            <label for="{{formInfo.property}}">{{formInfo.propertyName}}</label>
+            <div class="controls">
+              <select name="" ng-init="formData[formInfo.property] = options[0]" ng-model="page.formData[formInfo.property]" ng-options="agent.name as agent.name for agent in G_AGENT_DATA"></select>
+            </div>
+          </div>
+          <div class="bw-modal-form-row" ng-switch-when="textarea">
+            <label for="{{formInfo.property}}">{{formInfo.propertyName}}</label>
+            <div class="controls">
+              <textarea cols="30" rows="3" ng-model="formData[formInfo.property]"  placeholder="{{formInfo.placeholder}}"></textarea>
+            </div>
+          </div>
+        </div>
+		</div>
+		<div class="karose-modal-buttons">
+      <button ng-repeat="btn in page.buttons" class="btn btn-xs btn-{{btn.type}}" ng-click="modalBtnClick(btn, pagesData)">{{btn.name}}</button>
+    </div>
+	</form>
+</div>

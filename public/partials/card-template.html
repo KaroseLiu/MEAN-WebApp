@@ -1,0 +1,20 @@
+<div class="card-template">
+	<div class="card-header">{{oneCardData.name}}</div>
+
+	<div class="card-content">
+		<div ng-repeat="item in itemGroup">
+			<div>
+				<label>{{item}}:</label>
+				<span>{{oneCardData[item]}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer">
+		<div ng-repeat="btn in btns" ng-switch="btn.operation">
+
+			<button ng-switch-when="create" class="btn btn-xs btn-{{btn.type}}" show-modal="{karoseConfigureId: 'card_'+ btn.operation, formData: {}}">{{btn.name}}</button>
+		
+			<button ng-switch-default class="btn btn-xs btn-{{btn.type}}" show-modal="{karoseConfigureId: 'card_'+ btn.operation, formData: oneCardData, cardId: oneCardData._id}">{{btn.name}}</button>
+		</div>
+	</div>
+</div>
