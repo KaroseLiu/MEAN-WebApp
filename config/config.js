@@ -1,4 +1,4 @@
 module.exports={
     cookieSecret:'karose',
-    connectionstring:'mongodb://localhost/mydb'
+    url:'mongodb://localhost/mydb'
 };

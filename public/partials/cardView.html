@@ -1,8 +1,11 @@
 
+<a ui-sref="cardView">Card View</a>
+<a ui-sref="gridView">Grid View</a>
+
 <div class="karose-card" ng-controller="karose.component.card_view">
 	<div class="row">
 		<div ng-repeat="card in cardData">
 			<div karose-card one-card-data="card" class="col-md-3"></div>
 		</div>
-	</div>	
+	</div>
 </div>

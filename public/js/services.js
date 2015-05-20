@@ -7,7 +7,7 @@ angular.module('karose.services', ['ngResource'])
 
 				var deferred = $q.defer();
 
-				$http.get('/cards')
+				$http.get('/main/cards')
 					.success(function(data){
 						deferred.resolve(data);
 					})
@@ -21,7 +21,7 @@ angular.module('karose.services', ['ngResource'])
 			save: function(params, callback){
 				var deferred = $q.defer();
 
-				$http.post('/cards',params)
+				$http.post('/main/cards',params)
 					.success(function(data){
 						deferred.resolve(data);
 						callback();
@@ -32,12 +32,48 @@ angular.module('karose.services', ['ngResource'])
 
 				return deferred.promise;
 			},
-			
+
 			remove: function(params, callback){
-				$resource('/cards/:id', paramDefaults, actions)
+				$resource('/main/cards/:id', paramDefaults, actions)
 			}
 
 		}
+	}])
+	.factory('getUserService', ['$resource', '$http', '$q', function($resource, $http, $q){
+		return {
+
+			save: function(params,callback) {
+
+				var deferred = $q.defer();
+
+				$http.post('/user/signup', params)
+					.success(function(data){
+						deferred.resolve(data);
+						callback && callback();
+					})
+					.error(function(data){
+						deferred.reject(data);
+					});
+
+				return deferred.promise;
+			},
+
+			login: function(params, callback) {
+				var deferred = $q.defer();
+
+				$http.post('/user/login', params)
+					.success(function(data){
+						deferred.resolve(data);
+						callback && callback();
+					})
+					.error(function(data){
+						deferred.reject(data);
+					});
+
+				return deferred.promise;
+			}
+		}
+
 	}])
 	.factory('cardConfigureService', ['$rootScope', function($rootScope){
 		var toReturn = {
@@ -57,7 +93,7 @@ angular.module('karose.services', ['ngResource'])
 								'name': 'Add',
 								'operation': 'create',
 								'type': 'primary'
-							}, 
+							},
 							{
 								'name': 'Edit',
 								'operation': 'update',
@@ -71,7 +107,7 @@ angular.module('karose.services', ['ngResource'])
 						];
 						break;
 
-					case 'Large': 
+					case 'Large':
 
 						cardData['contentData'] = ['status', 'description', 'deploymentState'];
 						cardData['btns'] = [
@@ -79,7 +115,7 @@ angular.module('karose.services', ['ngResource'])
 								'name': 'Add',
 								'operation': 'create',
 								'type': 'primary'
-							}, 
+							},
 							{
 								'name': 'Edit',
 								'operation': 'update',
@@ -88,7 +124,7 @@ angular.module('karose.services', ['ngResource'])
 						];
 						break;
 
-					case 'Small': 
+					case 'Small':
 
 						cardData['contentData'] = ['status', 'description'];
 						cardData['btns'] = [
@@ -97,7 +133,7 @@ angular.module('karose.services', ['ngResource'])
 								'operation': 'update',
 								'type': 'success'
 							}
-						]; 
+						];
 						break;
 
 					default:
@@ -119,7 +155,7 @@ angular.module('karose.services', ['ngResource'])
 
 				var modalPage = [];
 				switch(karoseConfigureId) {
-					case "create": 
+					case "create":
 						{
 							modalPage[0] = {
 	              "formInfo": [
@@ -136,14 +172,14 @@ angular.module('karose.services', ['ngResource'])
 										'name': 'Create',
 										'operation': 'create',
 										'type': 'primary'
-									}, 
+									},
 									{
 										'name': 'Cancel',
 										'operation': 'cancel',
 										'type': 'warning'
 									}
 								],
-	              'modalType': 'create' 
+	              'modalType': 'create'
 	            }
 
 	            // modalPage.provideTemplateUrl = ($rootScope.karose_path || '') + 'partials/modal/form_create.html'
@@ -167,7 +203,7 @@ angular.module('karose.services', ['ngResource'])
 										'name': 'Upate',
 										'operation': 'update',
 										'type': 'primary'
-									}, 
+									},
 									{
 										'name': 'Cancel',
 										'operation': 'cancel',
@@ -189,14 +225,14 @@ angular.module('karose.services', ['ngResource'])
 										'name': 'Delete',
 										'operation': 'delete',
 										'type': 'primary'
-									}, 
+									},
 									{
 										'name': 'Cancel',
 										'operation': 'cancel',
 										'type': 'warning'
 									}
                 ],
-								'modalType': 'delete'  
+								'modalType': 'delete'
               }
 							// modalPage.provideTemplateUrl = ($rootScope.karose_path || '') + 'partials/modal/form_delete.html'
 						}
@@ -210,7 +246,7 @@ angular.module('karose.services', ['ngResource'])
 		}
 	}])
 	.factory('KaroseCard', ['$resource', function($resource){
-		return $resource('/cards/:id', {id: '@_id'}, {
+		return $resource('/main/cards/:id', {id: '@_id'}, {
 			deleteCard: {
 				method: 'DELETE'
 			},
