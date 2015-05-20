@@ -22,13 +22,10 @@ Once you have installed them, clone my repository:
 
 Data: MongoDB using [Mongoose](http://mongoosejs.com/) with Express framework running on Node.js, so run the following commands:
 
-		npm install express --save
 
+		npm run start-mongod
+        
 
-and
-
-		
-		npm install mongoose --save
 
 
 Everything is Ok. Start the demo up with
