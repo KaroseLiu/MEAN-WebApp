@@ -24,6 +24,11 @@ Data: MongoDB using [Mongoose](http://mongoosejs.com/) with Express framework ru
 
 
 		npm run start-mongod
+		
+
+If you want to see the Demo, open the Heroku websit:
+	
+		http://karose-mean.herokuapp.com/
         
 
 
