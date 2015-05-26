@@ -7,7 +7,7 @@ angular.module('karose.services', ['ngResource'])
 
 				var deferred = $q.defer();
 
-				$http.get('/main/cards')
+				$http.get('/cards')
 					.success(function(data){
 						deferred.resolve(data);
 					})
@@ -21,7 +21,7 @@ angular.module('karose.services', ['ngResource'])
 			save: function(params, callback){
 				var deferred = $q.defer();
 
-				$http.post('/main/cards',params)
+				$http.post('/cards',params)
 					.success(function(data){
 						deferred.resolve(data);
 						callback();
@@ -34,7 +34,7 @@ angular.module('karose.services', ['ngResource'])
 			},
 
 			remove: function(params, callback){
-				$resource('/main/cards/:id', paramDefaults, actions)
+				$resource('/cards/:id', paramDefaults, actions)
 			}
 
 		}
@@ -46,7 +46,7 @@ angular.module('karose.services', ['ngResource'])
 
 				var deferred = $q.defer();
 
-				$http.post('/user/signup', params)
+				$http.post('/auth/local/signup', params)
 					.success(function(data){
 						deferred.resolve(data);
 						callback && callback();
@@ -61,7 +61,7 @@ angular.module('karose.services', ['ngResource'])
 			login: function(params, callback) {
 				var deferred = $q.defer();
 
-				$http.post('/user/login', params)
+				$http.post('/auth/local/login', params)
 					.success(function(data){
 						deferred.resolve(data);
 						callback && callback();
@@ -246,7 +246,7 @@ angular.module('karose.services', ['ngResource'])
 		}
 	}])
 	.factory('KaroseCard', ['$resource', function($resource){
-		return $resource('/main/cards/:id', {id: '@_id'}, {
+		return $resource('/cards/:id', {id: '@_id'}, {
 			deleteCard: {
 				method: 'DELETE'
 			},
