@@ -1,4 +1,4 @@
-angular.module('karose.services', ['ngResource'])
+angular.module('karose.services', ['ngResource', 'ngCookies'])
 	.factory('getDataService', ['$http', '$q', '$rootScope', '$resource', function($http, $q, $rootScope,$resource){
 
 		return {
@@ -39,7 +39,8 @@ angular.module('karose.services', ['ngResource'])
 
 		}
 	}])
-	.factory('getUserService', ['$resource', '$http', '$q', function($resource, $http, $q){
+	.factory('getUserService', ['$resource', '$http', '$q', '$cookieStore', function($resource, $http, $q, $cookieStore){
+
 		return {
 
 			save: function(params,callback) {
@@ -63,8 +64,11 @@ angular.module('karose.services', ['ngResource'])
 
 				$http.post('/auth/local/login', params)
 					.success(function(data){
+
+						$cookieStore.put('token', data.token);
 						deferred.resolve(data);
 						callback && callback();
+
 					})
 					.error(function(data){
 						deferred.reject(data);

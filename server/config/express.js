@@ -8,12 +8,19 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var compression = require('compression');
 var errorHandler = require('errorhandler');
-
-
 var session = require('express-session');
+var mongoStore = require('connect-mongo')(session);
+var mongoose = require('mongoose');
 
 
 module.exports = function(app){
+
+
+  var sessionOpts = {
+    secret: 'karose-mean',
+    resave: true,
+    saveUninitialized: true
+  }
 
   app.set('views', path.join(__dirname, '../views'));
   app.engine('html', require('ejs').renderFile);
@@ -22,12 +29,18 @@ module.exports = function(app){
   app.use(logger('dev'));
   app.use(bodyParser.urlencoded({ extended: false}));
   app.use(bodyParser.json());
-  app.use(cookieParser());
+  app.use(cookieParser(sessionOpts.secret));
+
+  app.use(session(sessionOpts));
+  app.use(passport.initialize());
+  // app.use(passport.session());
+
   app.use(express.static(path.join(__dirname, '../../public')));
   app.set("appPath", path.join(__dirname, '../../public'));
-  app.use(session({ secret: 'karose-mean' })); // session secret
-  app.use(passport.initialize());
-  app.use(passport.session()); // persistent login sessions
+
+   // persistent login sessions
+
+
 
   app.use(errorHandler());
 

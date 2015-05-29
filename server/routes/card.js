@@ -6,6 +6,7 @@ var controller = require('../controller/card.controller');
 
 var router = express.Router();
 
+
 router.get('/', controller.showAllCards);
 router.post('/', controller.createOneCard);
 router.put('/:id', controller.updateOneCard);

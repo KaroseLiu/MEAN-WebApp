@@ -1,10 +1,14 @@
-angular.module('karose.controllers', ['karose.services'])
-	.controller('karose.controllers.index', ['$scope', '$rootScope', function($scope, $rootScope){
+angular.module('karose.controllers', ['karose.services', 'ngCookies'])
+	.controller('karose.controllers.index', ['$scope', '$rootScope', '$cookieStore', '$location', function($scope, $rootScope, $cookieStore, $location){
 
 
 		$scope.karose_path = './';
 		$rootScope.karose_path = './';
 
+		$scope.logout = function(){
+			$cookieStore.remove('token');
+			$location.path('/');
+		}
 
 	}])
 	.controller('karose.component.user.signup', ['$scope', '$rootScope', '$resource', 'getUserService', '$timeout', '$location', function($scope, $rootScope, $resource, getUserService, $timeout, $location) {
@@ -51,6 +55,8 @@ angular.module('karose.controllers', ['karose.services'])
 			var promise = getUserService.login(form);
 
 			promise.then(function(data) {
+
+				console.log("aaa");
 
 				$location.path('/cardView');
 

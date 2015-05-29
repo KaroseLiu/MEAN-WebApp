@@ -1,7 +1,11 @@
 
 var LocalStrategy   = require('passport-local').Strategy;
 var User = require("../../models/user");
+
+
 module.exports = function(passport) {
+
+
 
   passport.serializeUser(function(user, done){
     done(null, user.id);
@@ -17,6 +21,8 @@ module.exports = function(passport) {
     usernameField: 'email',
     passReqCallback: true
   },
+
+
   function(email, password, done) {
 
     process.nextTick(function(){
@@ -60,7 +66,7 @@ module.exports = function(passport) {
   }, function(email, password, done){
 
     User.findOne({'local.email': email}, function(err, user){
-      
+
       if(err) return done(err);
 
       if(!user)
@@ -76,6 +82,7 @@ module.exports = function(passport) {
     })
 
   }))
+
 
 
 }
